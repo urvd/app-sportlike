@@ -47,17 +47,20 @@ class MatchAffiche implements MatchAffiche {
 /*use cases :
   obj : MatchAffiche
   exemple1 :*/
-  const uma1 = new MatchAffiche();
-/*  console.log("Initialisation\n", uma1.getMatchAffiche());
+  export function TestBussnessMatchAfficheResultat(){
+    const uma1 = new MatchAffiche();
+    console.log("%Initialisation%\n", uma1.getMatchAffiche());
 
-  uma1.setAdversaire({adversaire1: "paris-saint-germain", adversaire2: "brest"});
-  console.log("Initialisation aves les adversaires\n", uma1.getMatchAffiche());
+    uma1.setAdversaire({adversaire1: "paris-saint-germain", adversaire2: "brest"}, "Barrage");
+    console.log("%Initialisation aves les adversaires%\n", uma1.getMatchAffiche());
+   
+    console.log("Attributions du score pour 1 match%\n");
 
-  // cas d'erreur
-  uma1.setScore({score1: 2, score2: 2})
-  console.log("Donner les scores\n", uma1.getMatchAffiche());
-  //cas normal
-  uma1.setScore({score1: 2, score2: 1})
-  console.log("Donner les scores\n", uma1.getMatchAffiche());
-
-*/
+    // cas d'erreur
+    uma1.setScore({score1: 2, score2: 2});
+    console.log("Donner les scores\n", uma1.getMatchAffiche());
+    //cas normal
+    uma1.setScore({score1: 2, score2: 1});
+    console.log("Donner les scores\n", uma1.getMatchAffiche());
+  }
+//*/

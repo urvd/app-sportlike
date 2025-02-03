@@ -46,16 +46,17 @@ export class ClassementResultat {
     console.log("indexes " +JSON.stringify(indexCls));
     if(indexCls && indexCls.index1 == -1){
       throw Error("Aucun classement n'a été trouvé pour l'équipe "
-              .concat(mr.adversaire.adversaire1 + "."))
+              .concat(mr.adversaire.adversaire1 + "."));
     }
     if(indexCls && indexCls.index2 == -1){
       throw Error("Aucun classement n'a été trouvé pour l'équipe "
-              .concat(mr.adversaire.adversaire2 + "."))
+              .concat(mr.adversaire.adversaire2 + "."));
     }
     //Update classement de l'equipe de l'adversaire1
-    this.classements[indexCls.index1].updateWithMatchScore(mr.score)
+    this.classements[indexCls.index1].updateWithMatchScore(mr.score);
     //Update classement de l'equipe de l'adversaire2
-    this.classements[indexCls.index2].updateWithMatchScore(mr.score)
+    this.classements[indexCls.index2]
+    .updateWithMatchScore({score1:mr.score.score2,score2:mr.score.score1});
   }
 
 }
@@ -116,29 +117,31 @@ export class Classement /*implements Classement*/ {
   obj : ClassementResultat, Classement
   exemple1 :
 */
-console.log("%Creation du championnat%\n");
-const classResult = new ClassementResultat("2024-2025", "ligue champ EU")
-console.log("Classement resultat:\n", classResult);
-const cls1 = new Classement("paris-saint-germain");
-const cls2 = new Classement("brest");
+export function TestBussnessClassementResultat(){
+  console.log("%Creation du championnat%\n");
+  const classResult = new ClassementResultat("2024-2025", "ligue champ EU");
+  console.log("Classement resultat:\n", classResult);
+  const cls1 = new Classement("paris-saint-germain");
+  const cls2 = new Classement("brest");
 
 
-console.log("%Initialisé les classements% \n");
+  console.log("%Initialisé les classements% \n");
 
-classResult.addClasement(cls1);
-classResult.addClasement(cls2);
+  classResult.addClasement(cls1);
+  classResult.addClasement(cls2);
 
-for(const cl of classResult.classements) {
-  console.log("Classement -> ".concat(cl.equipe +":\n"),
-             cl.getClassement());
+  for(const cl of classResult.classements) {
+    console.log("Classement -> ".concat(cl.equipe +":\n"),
+              cl.getClassement());
+  }
+  console.log("Classement resultat:\n", classResult);
+
+
+  //lorseque on récupe les resultats de match
+  console.log("%MAJ des classements après 1 match & score%\n");
+  classResult.update({score:{score1:2,score2:1},
+                      adversaire: {adversaire1: "paris-saint-germain", adversaire2: "brest"}});
+
+  console.log("Classement resultat:\n", classResult);
 }
-console.log("Classement resultat:\n", classResult);
-
-
-console.log("%MAJ des classements après match & score%\n");
-classResult.update({score:{score1:2,score2:1},
-                    adversaire: {adversaire1: "paris-saint-germain",adversaire2: "brest"}});
-
-console.log("Classement resultat:\n", classResult);
- //lorseque on récupe les resultats de match
 //*/
