@@ -1,5 +1,6 @@
 
 
+import { AppSportError } from '../utilities/base';
 import { Score, Adversaire } from './sport.model';
 
 interface MatchResultat{
@@ -43,14 +44,20 @@ export class ClassementResultat {
   update(mr: MatchResultat){
     //search classement des deux adversaire
     const indexCls = this._search(mr.adversaire);
-    console.log("indexes " +JSON.stringify(indexCls));
+    //console.log("indexes " +JSON.stringify(indexCls));
     if(indexCls && indexCls.index1 == -1){
-      throw Error("Aucun classement n'a été trouvé pour l'équipe "
+      const err =  new AppSportError("Aucun classement n'a été trouvé pour l'équipe "
               .concat(mr.adversaire.adversaire1 + "."));
+      const ret:any = {scope_error:'sports',msgerror:err.message};
+      console.log("##APP ERROR## =>");
+      console.log(ret);
     }
     if(indexCls && indexCls.index2 == -1){
-      throw Error("Aucun classement n'a été trouvé pour l'équipe "
+      const err = new AppSportError("Aucun classement n'a été trouvé pour l'équipe "
               .concat(mr.adversaire.adversaire2 + "."));
+        const ret:any = {scope_error:'sports',msgerror:err.message};
+        console.log("##APP ERROR## =>");
+        console.log(ret);
     }
     //Update classement de l'equipe de l'adversaire1
     this.classements[indexCls.index1].updateWithMatchScore(mr.score);

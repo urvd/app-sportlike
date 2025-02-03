@@ -1,4 +1,5 @@
 
+import { AppSportError } from '../utilities/base';
 import { Score, Adversaire } from './sport.model';
 
 interface MatchAffiche {
@@ -28,8 +29,9 @@ class MatchAffiche implements MatchAffiche {
   setAdversaire(adv: Adversaire, etape: string){
       if(adv.adversaire1 && adv.adversaire2 && etape
       || adv.adversaire1 != "" && adv.adversaire2 != ""){
-          this.adversaire2 = adv.adversaire2;
-          this.etape = this.etape;
+        this.adversaire1 = adv.adversaire1;
+        this.adversaire2 = adv.adversaire2;
+        this.etape = this.etape;
       }
   }
   setScore(sc: Score) {
@@ -37,6 +39,11 @@ class MatchAffiche implements MatchAffiche {
           this.score1 = sc.score1;
           this.score2 = sc.score2;
           this.gagnant = this.score1 > this.score2 ? 1:2;
+      }else{
+        const err = new AppSportError("Impossible les scores ne peuvent être égaux.");
+        const ret:any = {scope_error:'sports',msgerror:err.message};
+        console.log("##APP ERROR## =>");
+        console.log(ret);
       }
   }
   getMatchAffiche(): any {
@@ -53,7 +60,7 @@ class MatchAffiche implements MatchAffiche {
 
     uma1.setAdversaire({adversaire1: "paris-saint-germain", adversaire2: "brest"}, "Barrage");
     console.log("%Initialisation aves les adversaires%\n", uma1.getMatchAffiche());
-   
+
     console.log("Attributions du score pour 1 match%\n");
 
     // cas d'erreur
