@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { ClassementComponent } from "./classement/classement.component";
+import { AffichesComponent } from "./affiches/affiches.component";
+import { ResultatsComponent } from "./resultats/resultats.component";
 
 @Component({
   selector: 'app-sport',
-  imports: [],
+  imports: [ClassementComponent, AffichesComponent, ResultatsComponent],
   templateUrl: './sport.component.html',
   styleUrl: './sport.component.css'
 })
