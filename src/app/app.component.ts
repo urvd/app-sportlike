@@ -1,12 +1,23 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-
+import { RouterModule, RouterOutlet } from '@angular/router';
+import { TestBussnessClassementResultat} from "./models/classement.model";
+import { TestBussnessMatchAfficheResultat } from './models/matchaffiche.model';
+import { capitalizeFirstLetter } from './utilities/base';
+import { HeaderComponent } from "./head/header/header.component";
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterModule, RouterOutlet, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'app-custom';
+  title = capitalizeFirstLetter('app-custom');
+
+  constructor(){
+
+    TestBussnessMatchAfficheResultat()
+    TestBussnessClassementResultat();
+  }
+
 }
