@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { TestBussnessClassementResultat} from "./models/classement.model";
 import { TestBussnessMatchAfficheResultat } from './models/matchaffiche.model';
@@ -12,12 +12,11 @@ import { HeaderComponent } from "./head/header/header.component";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = capitalizeFirstLetter('app-custom');
+  title = capitalizeFirstLetter('SportLike');
 
   constructor(){
-
-    TestBussnessMatchAfficheResultat()
-    TestBussnessClassementResultat();
+    //TU :
+    //TestBussnessMatchAfficheResultat()
+    //TestBussnessClassementResultat();
   }
-
 }

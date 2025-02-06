@@ -9,7 +9,11 @@ export interface Adversaire {
   readonly adversaire2: string;
 }
 
-
+export interface Equipe {
+  nomcomplet:string;
+  nomsimple:string;
+  abreviation:string;
+}
 
 
 

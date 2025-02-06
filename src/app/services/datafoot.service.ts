@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class DatafootService {
-
+  private url_file = 'assets/ligue_des_champions_2024-2025.json';
   private dataSubject = new BehaviorSubject<any>(null);
   data$ = this.dataSubject.asObservable();
 
@@ -15,11 +15,11 @@ export class DatafootService {
   }
 
   private loadData() {
-    this.http.get('../../assets/ligue_des_champions_2024-2025.json')
+    this.http.get(this.url_file)
       .subscribe(data => {
-      console.log('Données chargées :', this.data$);
+      console.log('Données chargées DataFoot :', this.data$);
       this.dataSubject.next(data);
-    });
+    })
   }
 
   refreshData() {

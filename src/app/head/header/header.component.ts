@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { capitalizeFirstLetter } from '../../utilities/base';
 import { Location } from '@angular/common';
 
@@ -6,7 +6,8 @@ import { Location } from '@angular/common';
   selector: 'app-header',
   imports: [],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class HeaderComponent {
   constructor(private location: Location) {
