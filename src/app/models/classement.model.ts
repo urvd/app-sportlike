@@ -1,22 +1,25 @@
 
 
 import { AppSportError } from '../utilities/base';
-import { Score, Adversaire } from './sport.model';
+import { Score, Adversaire, Equipe } from './sport.model';
 
 interface MatchResultat{
   score: Score;
   adversaire: Adversaire;
 }
 export class ClassementResultat {
-  readonly season: string = "2024-2025"
-  readonly championnat:string = "";
   readonly classements: Classement[] = [];
-  constructor(season: string, championnat: string){
+  /*constructor(season: string, championnat: string){
     this.season = season;
     this.championnat = championnat;
+  }*/
+  constructor(equipes:string[]){
+    for(const equipe of equipes){
+      this._addClassement(equipe);
+    }
   }
-  addClasement(cla: Classement){
-    this.classements.push(cla);
+  private _addClassement(equipe: string){
+    this.classements.push(new Classement(equipe));
   }
 
   private _search(adv: Adversaire):any {
@@ -121,27 +124,19 @@ export class Classement /*implements Classement*/ {
 }
 
 /*use cases :
-  obj : ClassementResultat, Classement
+  obj : ClassementResultat
   exemple1 :
 */
 export function TestBussnessClassementResultat(){
-  console.log("%Creation du championnat%\n");
-  const classResult = new ClassementResultat("2024-2025", "ligue champ EU");
+  console.log("%Creation début de classements%\n");
+
+  const classResult = new ClassementResultat(['paris-saint-germain','brest']);
   console.log("Classement resultat:\n", classResult);
-  const cls1 = new Classement("paris-saint-germain");
-  const cls2 = new Classement("brest");
 
-
-  console.log("%Initialisé les classements% \n");
-
-  classResult.addClasement(cls1);
-  classResult.addClasement(cls2);
-
-  for(const cl of classResult.classements) {
-    console.log("Classement -> ".concat(cl.equipe +":\n"),
-              cl.getClassement());
+  for(let i = 0;i < classResult.classements.length; i++) {
+    console.log("Classement " + i + " -> ".concat(classResult.classements[i].equipe
+       +":\n"),classResult.classements[i].getClassement());
   }
-  console.log("Classement resultat:\n", classResult);
 
 
   //lorseque on récupe les resultats de match
