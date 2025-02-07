@@ -1,6 +1,6 @@
 
 
-import { AppSportError } from '../utilities/base';
+import { APLWarning, AppSportError } from '../utilities/base';
 import { Score, Adversaire, Equipe } from './sport.model';
 
 interface MatchResultat{
@@ -100,7 +100,8 @@ export class Classement /*implements Classement*/ {
 
   updateWithMatchScore(score: Score){
     if(score.score1 < 0 || score.score2 < 0){
-      throw new Error('Impossible score strictement négatif'); //TODO : creer une class d'erreur
+      throw new APLWarning('Match de '.concat(this.equipe)
+                  + ' : Score strictement négatif');
     }else{
       this.match_joue ++;
       if(score.score1 > score.score2){

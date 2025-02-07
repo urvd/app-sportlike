@@ -2,12 +2,13 @@
   <div>
     <h2>{{season}} - {{championship}}</h2>
   </div>
-  <div> <!-- colone horizontale à gauche-->
+  <div>
     <app-classement
       [matchsCls]="matchClassement()"
       [equipesCls]="equipes"></app-classement>
     <app-affiches></app-affiches>
   </div>
-  <app-resultats></app-resultats><!-- TODO: colone horizontale à droite-->
-  <!-- ou 2 page au lieu deux colones à router-->
+  <app-resultats></app-resultats>
+  <!-- TODO:colone horizontale à gauche et colone horizontale à droite-->
+  <!-- ou 3 pages au lieu deux colones à router-->
 </div>
