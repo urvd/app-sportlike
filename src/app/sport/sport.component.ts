@@ -11,7 +11,7 @@ import { Match, Etape } from '../models/match.models';
   selector: 'app-sport',
   imports: [ClassementComponent, AffichesComponent, ResultatsComponent],
   templateUrl: './sport.component.html',
-  styleUrl: './sport.component.css'
+  styleUrl: './sport.component.scss'
 })
 export class SportComponent {
   constructor(private footService: DatafootService) {}

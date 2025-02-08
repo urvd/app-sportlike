@@ -1,20 +1,14 @@
 <div>
   <h2>{{title}}</h2>
-  <nav>
-    <ul>
-      <li>
-        <btn class="app-spl-nav"
-          routerLink="/"
-          routerLinkActive="app-spl-active"
-          ariaCurrentWhenActive="page">Home</btn>
+  <nav class="navbar" style="background-color: #e3f2fd;">
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link active" href="/home">Home</a>
       </li>
-      <li>
-        <btn class="app-spl-nav"
-          routerLink="/sports"
-          routerLinkActive="app-spl-active"
-          ariaCurrentWhenActive="page">Sports</btn>
+      <li class="nav-item">
+        <a class="nav-link" href="/sports">Sports</a>
       </li>
     </ul>
   </nav>
-  <p style="font-style: italic;font-weight: bold;">{{page}}</p>
+  <p style="font-style: italic;font-weight: bold;"> >{{page}}</p>
 </div>

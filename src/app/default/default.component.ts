@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-default',
   imports: [],
   templateUrl: './default.component.html',
-  styleUrl: './default.component.css'
+  styleUrl: './default.component.scss'
 })
 export class DefaultComponent {
 

@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
   selector: 'app-header',
   imports: [RouterModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css',
+  styleUrl: './header.component.scss',
   schemas: [NO_ERRORS_SCHEMA]
 })
 export class HeaderComponent {
@@ -25,5 +25,9 @@ export class HeaderComponent {
     else{
       this.page = capitalizeFirstLetter('home');
     }
+  }
+
+  activeNavStyle(){
+    return this.page == 'Sports'?'app-spl-active':'app-spl-nav';
   }
 }

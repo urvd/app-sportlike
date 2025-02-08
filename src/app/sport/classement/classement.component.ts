@@ -8,7 +8,7 @@ import { ClassementResultat } from '../../models/classement.model';
   selector: 'app-classement',
   imports: [CommonModule],
   templateUrl: './classement.component.html',
-  styleUrl: './classement.component.css'
+  styleUrl: './classement.component.scss'
 })
 export class ClassementComponent {
   @Input() matchsCls: Match[] = [];

@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-affiches',
   imports: [],
   templateUrl: './affiches.component.html',
-  styleUrl: './affiches.component.css'
+  styleUrl: './affiches.component.scss'
 })
 export class AffichesComponent {
-  
+
 }
