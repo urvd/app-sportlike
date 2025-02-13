@@ -12,18 +12,20 @@ import { ClassementResultat } from '../../models/classement.model';
 })
 export class ClassementComponent {
   @Input() matchsCls: Match[] = [];
-  @Input() equipesCls: Equipe[] = [];
+  @Input() equipesCls: string[] = [];
   classementResultat?: ClassementResultat;
   isClsCalculated = false;
   ngOnInit(){
     this.classementResultat
-          = new ClassementResultat(this.equipesCls.map(e => e.nomsimple));
-    this.classementCalcul();
+          = new ClassementResultat(this.equipesCls);
+          /*FIXME : ClassementResultat don build classement
+          * deal with lis of classements directly ?
+          */
   }
 
   classementCalcul(){
     if(this.classementResultat
-       && this.classementResultat?.classements.length > 0){
+       && this.classementResultat.classements.length > 0){
         for(const match of this.matchsCls){
           this.classementResultat.update({
             adversaire:

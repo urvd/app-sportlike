@@ -17,7 +17,7 @@ export class DatafootService {
   private loadData() {
     this.http.get(this.url_file)
       .subscribe(data => {
-      console.log('Données chargées DataFoot :', this.data$);
+      console.log('Données chargées DataFoot :', (this.data$ != null));
       this.dataSubject.next(data);
     })
   }

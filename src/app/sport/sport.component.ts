@@ -6,10 +6,12 @@ import { DatafootService } from '../services/datafoot.service';
 import { Equipe } from '../models/sport.model';
 import { MatchService } from '../services/foot/match.service';
 import { Match, Etape } from '../models/match.models';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sport',
-  imports: [ClassementComponent, AffichesComponent, ResultatsComponent],
+  imports: [CommonModule, ClassementComponent, AffichesComponent,
+  ResultatsComponent],
   templateUrl: './sport.component.html',
   styleUrl: './sport.component.scss'
 })
@@ -19,10 +21,11 @@ export class SportComponent {
   season: string = "";
   championship: string = "";
   equipes:Equipe[] = [];
+  eqs:string[] = [];
   matchs: Match[] = [];
+  matchs_cls: any[] = [];
 
   ngOnInit() {
-
     this.footService.data$.subscribe(response => {
       if(response && response.saison)
         this.season = response.saison;
@@ -33,13 +36,17 @@ export class SportComponent {
       console.log("Match : " + this.season + " - " + this.championship);
 
       if(response.equipes && Array(response.equipes).length != 0){
-        this.equipes.push(response.equipes);
+        for(const e of response.equipes){
+          this.equipes.push(e);
+        }
+        this.eqs = this.equipes.map(e => e.nomsimple)
+                  .filter(n => typeof n === "string");
+
       }
 
       if(response.rencontres){
         for(const e of response.rencontres){
           if(e.etape && e.matchs && Array(e.matchs).length > 0){
-            console.log("Match récuperer : (" + Array(e.matchs).length + ")");
             for(const m of e.matchs){
               if(m.date && m.time && m.dom_equipe && m.ext_equipe
                 && m.dom_score && m.ext_score){
@@ -52,18 +59,20 @@ export class SportComponent {
                   "ext_score": m.ext_score,
                   "etape": e.etape,
                 };
-                console.log("Match récuperer : " + JSON.stringify(mtch));
+                //console.log("Match récuperer : " + JSON.stringify(mtch));
                 this.matchs.push(mtch);
               }
             }
           }
+          console.log("Matchs récuperer : " + this.matchs.length
+            + " " + e.etape);
         }
       }
     });
   }
 
-  matchClassement():Match[]{
-    return this.matchs.filter(m => m.etape == 'Qualification');
+  matchClassement(){
+    return this.matchs.filter(m => m.etape === 'Qualification');
   }
 
   matchFilter(etape?:Etape):Match[]{

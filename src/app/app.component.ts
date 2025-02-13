@@ -18,6 +18,6 @@ export class AppComponent {
   constructor(){
     //TU :
     //TestBussnessMatchAfficheResultat()
-    //TestBussnessClassementResultat();
+    TestBussnessClassementResultat();
   }
 }

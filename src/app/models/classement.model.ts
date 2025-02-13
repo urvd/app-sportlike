@@ -8,7 +8,7 @@ interface MatchResultat{
   adversaire: Adversaire;
 }
 export class ClassementResultat {
-  readonly classements: Classement[] = [];
+  classements: Classement[] = [];
   /*constructor(season: string, championnat: string){
     this.season = season;
     this.championnat = championnat;
@@ -122,6 +122,9 @@ export class Classement /*implements Classement*/ {
           match_nul: this.match_nul, match_perte: this.match_perte, but_pour: this.but_pour,
           but_contre: this.but_contre, but_diff: this.but_diff, points: this.points};
   }
+  getMJ(){
+    return this.match_joue;
+  }
 }
 
 /*use cases :
@@ -134,7 +137,7 @@ export function TestBussnessClassementResultat(){
   const classResult = new ClassementResultat(['paris-saint-germain','brest']);
   console.log("Classement resultat:\n", classResult);
 
-  for(let i = 0;i < classResult.classements.length; i++) {
+  /*for(let i = 0;i < classResult.classements.length; i++) {
     console.log("Classement " + i + " -> ".concat(classResult.classements[i].equipe
        +":\n"),classResult.classements[i].getClassement());
   }
@@ -145,6 +148,6 @@ export function TestBussnessClassementResultat(){
   classResult.update({score:{score1:2,score2:1},
                       adversaire: {adversaire1: "paris-saint-germain", adversaire2: "brest"}});
 
-  console.log("Classement resultat:\n", classResult);
+  console.log("Classement resultat:\n", classResult);*/
 }
 //*/

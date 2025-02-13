@@ -1,8 +1,54 @@
 <div>
   <h3>Classement des Qualifications</h3>
   <div>
-    <table>
-      
+    {{equipesCls | json}}
+    <table class="table table-hover">
+      <tbody class="table-primary">
+        <th>Ordre</th>
+        <th>Equipe</th>
+        <th>MJ</th>
+        <th>MG</th>
+        <th>MN</th>
+        <th>MP</th>
+        <th>BM</th>
+        <th>BC</th>
+        <th>DiffB</th>
+        <th>Points</th>
+      </tbody>
+      <ng-template ngIf="classementResultat &&
+       classementResultat.classements.length == 0 ; else ready">
+       <tr>Loading ...</tr>
+      </ng-template>
+      <ng-template #ready>
+        <tr class="table-primary"
+        *ngFor="let cls of classementResultat?.classements;
+        let i = index; let first = first; let last = last">
+          <td>{{i + 1}} </td>
+          <td>{{cls.equipe}}</td>
+          <td></td>
+          <td>...</td>
+          <td>.;k,l,lk..</td>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+        </tr>
+      </ng-template>
+
+      <tr class="table-secondary">...</tr>
+      <tr class="table-success">...</tr>
+      <tr class="table-danger">...</tr>
+      <tr class="table-warning">...</tr>
+      <tr class="table-info">...</tr>
+      <tr class="table-light">...</tr>
+      <tr class="table-dark">..trh"(th'yt).</tr>
+
+      <!-- On cells (`td` or `th`) -->
+
+
+
     </table>
+
   </div>
 </div>
