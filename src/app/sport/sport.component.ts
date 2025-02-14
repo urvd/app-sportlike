@@ -22,6 +22,7 @@ export class SportComponent {
   championship: string = "";
   equipes:Equipe[] = [];
   eqs:string[] = [];
+  eqsabbrev:string[] = [];
   matchs: Match[] = [];
   matchs_cls: any[] = [];
 
@@ -40,6 +41,8 @@ export class SportComponent {
           this.equipes.push(e);
         }
         this.eqs = this.equipes.map(e => e.nomsimple)
+                  .filter(n => typeof n === "string");
+        this.eqsabbrev = this.equipes.map(e => e.abreviation)
                   .filter(n => typeof n === "string");
 
       }

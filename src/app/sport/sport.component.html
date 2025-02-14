@@ -3,13 +3,13 @@
     <h2>{{season}} - {{championship}}</h2>
   </div>
   <div>
-    {{eqs}}
     <app-classement
       [matchsCls]="matchClassement()"
       [equipesCls]="eqs"></app-classement>
     <app-affiches></app-affiches>
   </div>
-  <app-resultats></app-resultats>
+  <app-resultats
+    [equipes]="eqsabbrev"  [equipesList]="equipes"  [matchsList]="matchs"></app-resultats>
   <!-- TODO:colone horizontale à gauche et colone horizontale à droite-->
   <!-- ou 3 pages au lieu deux colones à router-->
 </div>

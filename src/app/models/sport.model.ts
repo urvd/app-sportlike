@@ -15,6 +15,8 @@ export interface Equipe {
   abreviation:string;
 }
 
+export type FiltrageType = "date" | "heure" | "equipe" | "etape" ;
+
 
 
 

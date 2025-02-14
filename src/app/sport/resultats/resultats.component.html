@@ -1,3 +1,32 @@
 <div>
   <h3>Listes et Détails de tous les matchs</h3>
+  <div *ngFor="let match of matchsList">
+    <div class="card">
+      <h5 class="card-header">{{match.etape}}</h5>
+      <div class="card-body">
+        <div class="container text-center">
+          <div class="row row-cols-2">
+            <div class="col">
+              <h5 class="card-title">{{match.dom_equipe}}</h5>
+            </div>
+            <div class="col">
+              <p class="card-text">{{match.dom_score}}</p>
+            </div>
+            <div class="col">
+              <h5 class="card-title">{{match.ext_equipe}}</h5>
+            </div>
+            <div class="col">
+              <p class="card-text">{{match.ext_score}}</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <blockquote class="blockquote mb-0">
+            <p>{{match.date | date:'YYYY-MM-dd'}}</p>
+            <footer class="blockquote-footer">{{match.time}}</footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
