@@ -3,16 +3,12 @@
 import { APLWarning, AppSportError } from '../utilities/base';
 import { Score, Adversaire, Equipe } from './sport.model';
 
-interface MatchResultat{
-  score: Score;
-  adversaire: Adversaire;
-}
+
+
+/*
 export class ClassementResultat {
   classements: Classement[] = [];
-  /*constructor(season: string, championnat: string){
-    this.season = season;
-    this.championnat = championnat;
-  }*/
+
   constructor(equipes:string[]){
     for(const equipe of equipes){
       this._addClassement(equipe);
@@ -29,11 +25,11 @@ export class ClassementResultat {
     let indexCls2 = -1;
     for(let i = 0; i < this.classements.length; i++){
       if(!foundEquipeClass1 &&
-        this.classements[i].equipe == adv.adversaire1){
+        this.classements[i].getEquipe == adv.adversaire1){
         indexCls1 = i;
         foundEquipeClass1 = true;
       }else if(!foundEquipeClass2 &&
-              this.classements[i].equipe == adv.adversaire2){
+              this.classements[i].getEquipe() == adv.adversaire2){
         indexCls2 = i;
         foundEquipeClass2 = true;
       }
@@ -70,7 +66,7 @@ export class ClassementResultat {
   }
 
 }
-
+*/
 /*interface Classement {
   equipe: string;
   match_joue: number;
@@ -84,7 +80,7 @@ export class ClassementResultat {
 }*/
 
 export class Classement /*implements Classement*/ {
-  readonly equipe: string = "";
+  private equipe: string = "";
   private match_joue: number = 0;
   private match_gain: number = 0;
   private match_nul: number = 0;
@@ -122,6 +118,9 @@ export class Classement /*implements Classement*/ {
           match_nul: this.match_nul, match_perte: this.match_perte, but_pour: this.but_pour,
           but_contre: this.but_contre, but_diff: this.but_diff, points: this.points};
   }
+  setEquipe(equipe:string){
+    this.equipe = equipe;
+  }
   getMJ(){
     return this.match_joue;
   }
@@ -134,20 +133,14 @@ export class Classement /*implements Classement*/ {
 export function TestBussnessClassementResultat(){
   console.log("%Creation début de classements%\n");
 
-  const classResult = new ClassementResultat(['paris-saint-germain','brest']);
-  console.log("Classement resultat:\n", classResult);
+  let classements:Classement[] = [];
+  console.log("Classement resultat:\n", classements);
 
-  /*for(let i = 0;i < classResult.classements.length; i++) {
-    console.log("Classement " + i + " -> ".concat(classResult.classements[i].equipe
-       +":\n"),classResult.classements[i].getClassement());
+  for(let i = 0;i < classements.length; i++) {
+    classements[i].setEquipe("fvfv");
+    console.log("Classement " + i + " -> "
+      .concat(classements[i].getClassement().equipe
+       +":\n"),classements[i].getClassement());
   }
-
-
-  //lorseque on récupe les resultats de match
-  console.log("%MAJ des classements après 1 match & score%\n");
-  classResult.update({score:{score1:2,score2:1},
-                      adversaire: {adversaire1: "paris-saint-germain", adversaire2: "brest"}});
-
-  console.log("Classement resultat:\n", classResult);*/
 }
-//*/
+

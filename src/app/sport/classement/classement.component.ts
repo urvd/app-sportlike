@@ -2,7 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Match } from '../../models/match.models';
 import { Equipe } from '../../models/sport.model';
 import { CommonModule } from '@angular/common';
-import { ClassementResultat } from '../../models/classement.model';
+import { Classement } from '../../models/classement.model';
+import { ClassementService } from '../../services/classement.service';
 
 @Component({
   selector: 'app-classement',
@@ -13,28 +14,29 @@ import { ClassementResultat } from '../../models/classement.model';
 export class ClassementComponent {
   @Input() matchsCls: Match[] = [];
   @Input() equipesCls: string[] = [];
-  classementResultat?: ClassementResultat;
+  classements: Classement[] = [];
   isClsCalculated = false;
-  ngOnInit(){
-    this.classementResultat
-          = new ClassementResultat(this.equipesCls);
-          /*FIXME : ClassementResultat don build classement
-          * deal with lis of classements directly ?
-          */
-  }
 
-  classementCalcul(){
-    if(this.classementResultat
-       && this.classementResultat.classements.length > 0){
-        for(const match of this.matchsCls){
-          this.classementResultat.update({
-            adversaire:
-              {adversaire1:match.dom_equipe, adversaire2:match.ext_equipe},
-            score:
-              {score1:match.dom_score, score2: match.ext_score}
-            });
+  constructor(private classementService: ClassementService){
+  }
+  
+  ngOnInit(){
+    this.classementService.initialise(this.equipesCls);
+          /*FIXME : ClassementResultat don build classement
+          * deal with list of classements directly ?
+          */
+    this.classementService.dataClassement$.subscribe(res => {
+      if(res && res.length > 0){
+        for(let match of this.matchsCls){
+          this.classementService.update({
+            adversaire:{adversaire1:match.dom_equipe,
+              adversaire2:match.ext_equipe},
+            score:{score1:match.dom_score, score2: match.ext_score}
+          });
         }
         this.isClsCalculated = true;
-    }
+      }
+    });
   }
+
 }

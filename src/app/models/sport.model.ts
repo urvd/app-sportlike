@@ -15,6 +15,11 @@ export interface Equipe {
   abreviation:string;
 }
 
+export interface MatchResultat{
+  score: Score;
+  adversaire: Adversaire;
+}
+
 export type FiltrageType = "date" | "heure" | "equipe" | "etape" ;
 
 

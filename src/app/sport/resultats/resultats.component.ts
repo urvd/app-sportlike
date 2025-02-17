@@ -14,9 +14,9 @@ export class ResultatsComponent {
   @Input() equipesList: Equipe[] = [];
   @Input() equipes: string[] = [];
   isResultFiltred = false;
-  
-  //TODO: cards html to render match
+
   //TODO: Create filtering services & view
+  //TODO: trier les matchs par defaut par date
   ngOnInit(){
 
   }
