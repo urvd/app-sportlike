@@ -9,3 +9,11 @@ export class AppSportError extends Error {
     super(msg);
   }
 }
+
+export class APLWarning extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "Warning";
+    console.warn(`⚠️ Warning: ${message}`); // Afficher dans la console
+  }
+}

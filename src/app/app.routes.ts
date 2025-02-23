@@ -1,5 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
-import { SportComponent } from './sport/sport.component';
+import { SportComponent } from './foot/sport/sport.component';
 import { DefaultComponent } from './default/default.component';
 import { NgModule } from '@angular/core';
 

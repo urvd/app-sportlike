@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { capitalizeFirstLetter } from '../../utilities/base';
 import { Location } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.scss',
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class HeaderComponent {
   constructor(private location: Location) {
@@ -23,5 +25,9 @@ export class HeaderComponent {
     else{
       this.page = capitalizeFirstLetter('home');
     }
+  }
+
+  activeNavStyle(){
+    return this.page == 'Sports'?'app-spl-active':'app-spl-nav';
   }
 }

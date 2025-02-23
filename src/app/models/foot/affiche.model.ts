@@ -2,7 +2,7 @@
 import { AppSportError } from '../utilities/base';
 import { Score, Adversaire } from './sport.model';
 
-interface MatchAffiche {
+interface Affiche {
   adversaire1: string;
   adversaire2: string;
   score1: number;
@@ -12,7 +12,7 @@ interface MatchAffiche {
   //setAdversaire(adv: Adversaire):any;
   //setScore(s: Sc):any;
 }
-class MatchAffiche implements MatchAffiche {
+class MatchAffiche implements Affiche {
   adversaire1: string = "";
   adversaire2: string = "";
   score1: number = 0;
@@ -41,7 +41,7 @@ class MatchAffiche implements MatchAffiche {
           this.gagnant = this.score1 > this.score2 ? 1:2;
       }else{
         const err = new AppSportError("Impossible les scores ne peuvent être égaux.");
-        const ret:any = {scope_error:'sports',msgerror:err.message};
+        const ret:any = {scope_error:'sports', msgerror:err.message};
         console.log("##APP ERROR## =>");
         console.log(ret);
       }
