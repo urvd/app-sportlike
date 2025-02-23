@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { ClassementComponent } from "./classement/classement.component";
 import { AffichesComponent } from "./affiches/affiches.component";
 import { ResultatsComponent } from "./resultats/resultats.component";
-import { DatafootService } from '../services/datafoot.service';
+import { DatafootService } from '../../services/foot/datafoot.service';
 import { Equipe } from '../models/sport.model';
-import { MatchService } from '../services/foot/match.service';
+import { MatchService } from '../../services/foot/match.service';
 import { Match, Etape } from '../models/match.models';
 import { CommonModule } from '@angular/common';
 
@@ -36,7 +36,7 @@ export class SportComponent {
 
       console.log("Match : " + this.season + " - " + this.championship);
 
-      if(response.equipes && Array(response.equipes).length != 0){
+      if(response.equipes && Array.isArray(response.equipes)){
         for(const e of response.equipes){
           this.equipes.push(e);
         }

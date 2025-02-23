@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AppSportError } from '../utilities/base';
-import { Adversaire, MatchResultat } from '../models/sport.model';
+import { Adversaire, Equipe, MatchResultat } from '../models/sport.model';
 import { Classement } from '../models/classement.model';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, timeout } from 'rxjs';
+import { DatafootService } from './datafoot.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClassementService {
+  constructor(private datafootService: DatafootService){
 
-  constructor() {
   }
-
   private dataSubject =
     new BehaviorSubject<Classement[]>([]);
   dataClassement$ = this.dataSubject.asObservable();
@@ -20,14 +20,28 @@ export class ClassementService {
     this.dataSubject.next('Nouvelle donnée générée à ' + new Date().toLocaleTimeString());
   }*/
   classements: Classement[] = [];
-  equipes:string[] = [ ];
+  equipes: string[] = [];
 
+  initialise(){
+    this.datafootService.data$.subscribe(res => {
+      if(res.equipes && Array.isArray(res.equipes)){
+        if(res.equipes){
+          //console.log('équipes get '+ JSON.stringify(this.equipes));
+          for(const equipe of res.equipes){
+            let cls = new Classement();
+            cls.setEquipe(equipe.nomsimple);
+            //console.log('build classement'+ JSON.stringify(cls));
+            this.classements.push(cls);
+          }
+          //console.log("*Classements init " + JSON.stringify(this.classements));
+        }
 
-  initialise(equipes:string[]){
-    for(const equipe of equipes){
-      this.classements.push(new Classement(equipe));
+        this.dataSubject.next(this.classements);
+      }
+      this.dataSubject.next([]);
     }
-    this.dataSubject.next(this.classements);
+    );
+
   }
 
   private _search(adv: Adversaire):any {
@@ -54,16 +68,17 @@ export class ClassementService {
 
   update(mr: MatchResultat){
     //search classement des deux adversaire
+    console.log("*Classements update");
     const indexCls = this._search(mr.adversaire);
-    //console.log("indexes " +JSON.stringify(indexCls));
-    if(indexCls && indexCls.index1 == -1){
+    console.log("indexes " +JSON.stringify(indexCls));
+    if(!indexCls || indexCls.index1 == -1){
       const err =  new AppSportError("Aucun classement n'a été trouvé pour l'équipe "
               .concat(mr.adversaire.adversaire1 + "."));
       const ret:any = {scope_error:'sports',msgerror:err.message};
       console.log("##APP ERROR## =>");
       console.log(ret);
     }
-    if(indexCls && indexCls.index2 == -1){
+    if(!indexCls || indexCls.index2 == -1){
       const err = new AppSportError("Aucun classement n'a été trouvé pour l'équipe "
               .concat(mr.adversaire.adversaire2 + "."));
         const ret:any = {scope_error:'sports',msgerror:err.message};

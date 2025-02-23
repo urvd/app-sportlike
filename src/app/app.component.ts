@@ -3,7 +3,7 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { TestBussnessClassementResultat} from "./models/classement.model";
 import { TestBussnessMatchAfficheResultat } from './models/affiche.model';
 import { capitalizeFirstLetter } from './utilities/base';
-import { HeaderComponent } from "./head/header/header.component";
+import { HeaderComponent } from "./foot/header/header.component";
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-root',
@@ -18,6 +18,6 @@ export class AppComponent {
   constructor(){
     //TU :
     //TestBussnessMatchAfficheResultat()
-    TestBussnessClassementResultat();
+    //TestBussnessClassementResultat();
   }
 }

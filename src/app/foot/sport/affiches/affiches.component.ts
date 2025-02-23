@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './affiches.component.scss'
 })
 export class AffichesComponent {
-
+ //TODO: resolve logigue for this functionnality
 }

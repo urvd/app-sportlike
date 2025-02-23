@@ -19,15 +19,23 @@ export class ClassementComponent {
 
   constructor(private classementService: ClassementService){
   }
-  
+
   ngOnInit(){
-    this.classementService.initialise(this.equipesCls);
-          /*FIXME : ClassementResultat don build classement
+    this.classementService.initialise();
+          /*FIXME : ClassementResultat do build classement
           * deal with list of classements directly ?
           */
-    this.classementService.dataClassement$.subscribe(res => {
-      if(res && res.length > 0){
-        for(let match of this.matchsCls){
+
+
+
+    this.classementService.dataClassement$.subscribe((res) => {
+      if(!res || !Array.isArray(res)){
+        this.isClsCalculated = false;
+      }else{
+        for(const cl of res){
+          this.classements.push(cl);
+        }
+        for(const match of this.matchsCls){
           this.classementService.update({
             adversaire:{adversaire1:match.dom_equipe,
               adversaire2:match.ext_equipe},
@@ -37,6 +45,18 @@ export class ClassementComponent {
         this.isClsCalculated = true;
       }
     });
+  }
+  ngAfterViewInit(){
+    if(this.classements.length > 0){
+      for(const match of this.matchsCls){
+        this.classementService.update({
+          adversaire:{adversaire1:match.dom_equipe,
+          adversaire2:match.ext_equipe},
+          score:{score1:match.dom_score, score2: match.ext_score}
+        });
+      }
+      this.isClsCalculated = true;
+    }
   }
 
 }

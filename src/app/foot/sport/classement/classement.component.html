@@ -1,7 +1,6 @@
 <div>
   <h3>Classement des Qualifications</h3>
   <div>
-    {{classements | json}}
     <table class="table table-hover">
       <tbody class="table-primary">
         <th>Ordre</th>
@@ -15,11 +14,10 @@
         <th>DiffB</th>
         <th>Points</th>
       </tbody>
-      <ng-template ngIf="!isClsCalculated || classement &&
-       classements.length == 0;   else ready">
+      <ng-template ngIf="isClsCalculated == false ; else ready">
        <tr>Loading ...</tr>
       </ng-template>
-      <ng-template #ready>
+      <ng-template>
         <tr class="table-primary"
         *ngFor="let cls of classements;
         let i = index; let first = first; let last = last">
@@ -33,6 +31,7 @@
           <td>...</td>
           <td>...</td>
           <td>...</td>
+          {{cls | json}}
         </tr>
       </ng-template>
 

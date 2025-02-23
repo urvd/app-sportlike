@@ -90,8 +90,7 @@ export class Classement /*implements Classement*/ {
   private but_diff: number = 0;
   private points?: number = 0;
 
-  constructor(equipe: string)  {
-    this.equipe = equipe;
+  constructor()  {
   }
 
   updateWithMatchScore(score: Score){
