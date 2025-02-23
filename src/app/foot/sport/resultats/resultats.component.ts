@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { Match } from '../../models/match.models';
 import { CommonModule } from '@angular/common';
-import { Equipe } from '../../models/sport.model';
+import { Match } from '../../../models/foot/match.models';
+import { Equipe } from '../../../models/foot/sport.model';
 
 @Component({
   selector: 'app-resultats',

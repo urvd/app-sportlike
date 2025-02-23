@@ -1,6 +1,6 @@
 
 
-import { APLWarning, AppSportError } from '../utilities/base';
+import { APLWarning } from '../../utilities/base';
 import { Score, Adversaire, Equipe } from './sport.model';
 
 

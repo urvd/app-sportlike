@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { Match } from '../../models/match.models';
-import { Equipe } from '../../models/sport.model';
+import { ClassementService } from '../../../services/foot/classement.service';
+import { Classement } from '../../../models/foot/classement.model';
+import { Match } from '../../../models/foot/match.models';
 import { CommonModule } from '@angular/common';
-import { Classement } from '../../models/classement.model';
-import { ClassementService } from '../../services/classement.service';
 
 @Component({
   selector: 'app-classement',

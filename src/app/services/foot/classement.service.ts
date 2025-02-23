@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { AppSportError } from '../utilities/base';
-import { Adversaire, Equipe, MatchResultat } from '../models/sport.model';
-import { Classement } from '../models/classement.model';
+
 import { BehaviorSubject, Observable, timeout } from 'rxjs';
 import { DatafootService } from './datafoot.service';
+import { Classement } from '../../models/foot/classement.model';
+import { Adversaire, MatchResultat } from '../../models/foot/sport.model';
+import { AppSportError } from '../../utilities/base';
 
 @Injectable({
   providedIn: 'root'

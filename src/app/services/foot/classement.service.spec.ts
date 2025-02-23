@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
+import { ClassementService } from './classement.service';
 
-import { ClassementService } from '../classement.service';
+
 
 describe('ClassementService', () => {
   let service: ClassementService;
